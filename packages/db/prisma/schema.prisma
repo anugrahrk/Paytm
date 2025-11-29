@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js" 
+  // output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String?  @unique
+  name  String?
+  password String
+  number String @unique
+  OnRampTransaction OnRampTransaction[]
+  Balance Balance[]
+}
+
+model Merchant{
+  id Int @id @default(autoincrement())
+  email String @unique
+  name String?
+  auth_type AuthType
+}
+model OnRampTransaction{
+  id Int @id @default(autoincrement())
+  status onRampStatus
+  token String @unique
+  provider String
+  amount Int
+  startTime DateTime
+  userId Int
+  user User @relation(fields:[userId],references: [id])
+}
+model Balance{
+  id Int @id @default(autoincrement())
+  userId Int @unique
+  amount Int
+  locked Int 
+  user User @relation(fields: [userId],references: [id])
+}
+
+enum AuthType{
+  Google
+  Github
+}
+enum onRampStatus{
+  Success
+  Failure
+  Processing
+}

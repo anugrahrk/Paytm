@@ -1,0 +1,13 @@
+{
+  "name": "@repo/store",
+  "version": "1.0.0",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.0",
+    "react-redux": "^9.0.0",
+    "zustand": "^5.0.8"
+  },
+  "exports": {
+  "./useBalance": "./useBalance.ts",
+  "./useSetBalance": "./useSetBalance.ts"
+}
+}
