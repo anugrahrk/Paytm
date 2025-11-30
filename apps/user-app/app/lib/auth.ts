@@ -35,9 +35,22 @@ export const AuthOptions={
                         number: credentials.phone,
                         password: hashedPassword,
                     };
-
                     const user = await db.user.create({
                         data: newUserPayload
+                    })
+                    const newUserBalance: Prisma.BalanceCreateInput = {
+                        amount:0,
+                        locked:0,
+                        user:{
+                            connect:{
+                                id:user.id
+                            }
+                        }
+                    };
+                    
+                    const balance=await db.balance.create({
+                        data:newUserBalance
+
                     })
                     return{
                         id:user.id.toString(),
@@ -58,5 +71,6 @@ export const AuthOptions={
             session.user.id=token.sub
             return session
         }
-    }
+    },
+    
 }

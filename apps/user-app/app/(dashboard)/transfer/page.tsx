@@ -52,7 +52,7 @@ export default async function() {
             <div>
                 <BalanceCard amount={balance.amount} locked={balance.locked} />
                 <div className="pt-4">
-                <OnRampTransaction transactions={transactions}/>
+                <OnRampTransaction transactions={transactions} state="Received"/>
                 </div>
             </div>
         </div>

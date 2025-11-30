@@ -12,6 +12,7 @@ export default function Layout({
                 <SideBarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />
                 <SideBarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
                 <SideBarItem href={"/transactions"} icon={<TransactionsIcon />} title="Transactions" />
+                <SideBarItem href={"/p2pTransfer"} icon={<TraansferIcon/>} title="p2p Transfer"/>
             </div>
         </div>
             {children}
@@ -35,5 +36,11 @@ function TransactionsIcon() {
     return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
   </svg>
+  
+}
+
+function TraansferIcon() {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-transfer"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 10h-16l5.5 -6" /><path d="M4 14h16l-5.5 6" /></svg>
+
   
 }

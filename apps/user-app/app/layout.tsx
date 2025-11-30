@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={geist.className}>
-        <div className="h-screen bg-amber-50">
+        <div className="h-full bg-amber-50">
       <Providers>
         <AppbarClient/>
       {children}

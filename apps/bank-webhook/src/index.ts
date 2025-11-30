@@ -2,6 +2,7 @@ import express from "express"
 import { PrismaClient } from "@repo/db/client"
 const app=express()
 const db=new PrismaClient()
+app.use(express.json())
 
 app.post('/hdfcBank',async(req,res)=>{
  const PaymentInformation:{
@@ -11,7 +12,7 @@ app.post('/hdfcBank',async(req,res)=>{
  }={
     token:req.body.token,
     userId:req.body.userId,
-    amount:req.body.amout
+    amount:req.body.amount
  }
  try{
     await db.$transaction([
@@ -21,8 +22,16 @@ app.post('/hdfcBank',async(req,res)=>{
             },
             data:{
                 amount:{
-                    increment: Number(PaymentInformation.amount)
+                    increment: Number(PaymentInformation.amount)*100
                 }
+            }
+        }),
+        db.onRampTransaction.updateMany({
+            where:{
+                token:PaymentInformation.token
+            },
+            data:{
+                status:"Success"
             }
         })
     ])
@@ -38,4 +47,4 @@ app.post('/hdfcBank',async(req,res)=>{
  }
 })
 
-app.listen(3003)
+app.listen(3003,()=>{console.log("server running")})
