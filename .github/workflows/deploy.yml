@@ -41,13 +41,7 @@ jobs:
           sudo docker pull anugrahrk/ci-cd-app:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
-          sudo docker run \
-          -e DATABASE_URL=${{secrets.DATABASE_URL}} \
-          -e JWT_SECRET=${{secrets.JWT_SECRET}} \
-          -e NEXTAUTH_URL=${{secrets.NEXTAUTH_URL}} \
-          -d --name web-app -p 3005:3000 \
-          --restart always \
-          anugrahrk/ci-cd-app:latest
+          sudo docker run -e DATABASE_URL=${{secrets.DATABASE_URL}} -e JWT_SECRET=${{secrets.JWT_SECRET}} -e NEXTAUTH_URL=${{secrets.NEXTAUTH_URL}} -d --name web-app -p 3005:3000 --restart always anugrahrk/ci-cd-app:latest
 ##add elastic beanstalk for auto scaling
 ## instead of deploying to docker hub deploy to ECR
 ##add env for db url as well as deploy merchant and bankserver app too
